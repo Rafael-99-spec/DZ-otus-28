@@ -8,14 +8,12 @@ MACHINES = {
                    {ip: '192.168.255.1', adapter: 2, netmask: "255.255.255.240", virtualbox__intnet: "router-net"} # intnet это vlan
                ]
   },
-
  :inetRouter2 => {
         :box_name => "centos/7",
         :net => [
                    {ip: '192.168.255.2', adapter: 2, netmask: "255.255.255.240", virtualbox__intnet: "router-net"}
                ]
   },
-
   :centralRouter => {
         :box_name => "centos/7",
         :net => [
@@ -23,16 +21,13 @@ MACHINES = {
                    {ip: '192.168.0.1', adapter: 3, netmask: "255.255.255.240", virtualbox__intnet: "central-net"}
                 ]
   },
-  
   :centralServer => {
         :box_name => "centos/7",
         :net => [
                    {ip: '192.168.0.2', adapter: 2, netmask: "255.255.255.240", virtualbox__intnet: "central-net"}
                 ]
   }
-
 }
-
 Vagrant.configure("2") do |config|
   MACHINES.each do |boxname, boxconfig|
     config.vm.define boxname do |box|
