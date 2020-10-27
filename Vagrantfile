@@ -59,7 +59,6 @@ Vagrant.configure("2") do |config|
                 cp ~vagrant/.ssh/auth* ~root/.ssh
         SHELL
         
-        # Директивы говорящие что надо использовать вход в гостевые машины используя логин и пароль
         #config.ssh.username = 'vagrant'
         #config.ssh.password = 'vagrant'
         #config.ssh.insert_key = false
@@ -70,16 +69,12 @@ Vagrant.configure("2") do |config|
         when "inetRouter"
           box.vm.provision "shell", run: "always", inline: <<-SHELL
             
-            # Скачиваем программу knockd 
             sudo yum install -y epel-release; sudo yum install -y wget libpcap*; wget http://li.nux.ro/download/nux/misc/el7/x86_64//knock-server-0.7-1.el7.nux.x86_64.rpm -P /home/vagrant; sudo yum localinstall -y /home/vagrant/knock-server-0.7-1.el7.nux.x86_64.rpm; #sudo yum localinstall -y knock-server-0.7-1.el7.nux.x86_64.rpm; sudo rpm -ivh /home/vagrant/knock-server-0.7-1.el7.nux.x86_64.rpm
             
-            # Включаем форвардинг
             sudo bash -c 'echo "net.ipv4.conf.all.forwarding=1" >> /etc/sysctl.conf'; sudo sysctl -p
             
-            # Устанавливаем софт
             sudo yum install -y iptables-services; sudo systemctl enable iptables && sudo systemctl start iptables;
             
-            # Очищаем таблицы iptables
             sudo iptables -P INPUT ACCEPT
             sudo iptables -P FORWARD ACCEPT
             sudo iptables -P OUTPUT ACCEPT
