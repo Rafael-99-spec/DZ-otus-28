@@ -28,7 +28,8 @@ sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; sud
 
 Затем привести файлы конфигурации к следующему виду:
 
-```/etc/knockd.conf
+```
+/etc/knockd.conf
 [options]
 	UseSyslog
 
