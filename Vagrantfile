@@ -59,12 +59,6 @@ Vagrant.configure("2") do |config|
                 cp ~vagrant/.ssh/auth* ~root/.ssh
         SHELL
         
-        #config.ssh.username = 'vagrant'
-        #config.ssh.password = 'vagrant'
-        #config.ssh.insert_key = false
-        #config.ssh.connect_timeout = 5
-
-
         case boxname.to_s
         when "inetRouter"
           box.vm.provision "shell", run: "always", inline: <<-SHELL
