@@ -61,11 +61,11 @@ OPTIONS="-i eth1"
 
 В сучае чего на centalRouter можно установить программу knock и далее выполнить команду ```knock 192.168.4.24 2222 3333 4444 -d 500```, где d это delay - 500мс между портами.
 
-- 2) Добавить inetRouter2, который виден(маршрутизируется (host-only тип сети для виртуалки)) с хоста или форвардится порт через локалхост
+ 2. Добавить inetRouter2, который виден(маршрутизируется (host-only тип сети для виртуалки)) с хоста или форвардится порт через локалхост
  Добавлен в Vagrantfile директивой box.vm.network "forwarded_port", guest: 8080, host: 1234, host_ip: "127.0.0.1", id: "nginx" 
 
-- 3) Запустить nginx на centralServer
+ 3. Запустить nginx на centralServer
  Добавлено в Vagrantfile директивами - sudo yum install -y epel-release; sudo yum install -y nginx; sudo systemctl enable nginx; sudo systemctl start nginx 
 
-- 4) Пробросить 80й порт на inetRouter2 8080
+ 4. Пробросить 80й порт на inetRouter2 8080
 
