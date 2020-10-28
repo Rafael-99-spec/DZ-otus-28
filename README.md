@@ -53,7 +53,7 @@ OPTIONS="-i eth1"
 
 Также необходимо добавить на 23 строку файла ```/etc/init.d/knock``` директиву ```sleep 30``` и перезагрузить systemd(```systemctl daemon-reload```). 
 
-Мы своего добились, теперь можно проверить настройку knocking port. Необходимо зайти на centralRouter командой ```vagrant ssh centralRouter``` и выполнить:
+Теперь можно проверить настройку knocking port. Необходимо зайти на centralRouter командой ```vagrant ssh centralRouter``` и выполнить:
 ```
  for x in 2222 3333 4444; do sudo nmap -Pn --host_timeout 100 --max-retries 0 -p $x 192.168.255.1; done
 ```
