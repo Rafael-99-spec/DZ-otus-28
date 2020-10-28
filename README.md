@@ -68,4 +68,15 @@ OPTIONS="-i eth1"
  Добавлено в Vagrantfile директивами - sudo yum install -y epel-release; sudo yum install -y nginx; sudo systemctl enable nginx; sudo systemctl start nginx 
 
 ##### 4) Пробросить 80й порт на inetRouter2 8080
+```inetRouter2```
+Правила iptables
+```
+sudo iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 8080 -j DNAT --to-destination 192.168.0.2:80
+sudo iptables -t nat -A POSTROUTING --destination 192.168.0.2/32 -j SNAT --to-source 192.168.255.2
+```
 
+##### 5) Все машины по умолчанию выходят в Глобальную сеть через 192.168.255.1 (inetRouter)
+```
+echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0 
+echo "GATEWAY=192.168.0.1" >> /etc/sysconfig/network-scripts/ifcfg-eth1
+```
