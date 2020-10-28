@@ -20,7 +20,8 @@
 
 #### 1) Реализовать knocking port - centralRouter может попасть на ssh inetRouter через knock скрипт
 -- Использование таких программ как knock 
-Пропишем правила в iptables:
+
+Прописаны след. правила в iptables(Vagrantfile).
 ```
 sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; sudo iptables -A INPUT -p tcp --dport 22 -j REJECT; service iptables save iptables
 ```
