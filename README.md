@@ -16,16 +16,13 @@
 Критерии оценки: 5 - все сделано 
 ```
 ### Практическая часть
-ОБРАТИТЕ ВНИМАНИЕ! До того как выполнять настройки iptables, строго рекомендую скачать пакет - ```iptables-services```, чтобы не возникало проблем с запуском автозагрузки и сохранения конфигов iptables(```yum install -y iptables-services```).
+ОБРАТИТЕ ВНИМАНИЕ! До того как выполнять настройки iptables, строго рекомендую всегда скачивать пакет - ```iptables-services```, чтобы не возникало проблем с запуском автозагрузки и сохранения конфигов iptables(```yum install -y iptables-services```).
 
 #### 1) Реализовать knocking port - centralRouter может попасть на ssh inetRouter через knock скрипт
 -- Использование таких программ как knock 
 Пропишем правила в iptables:
 ```
-[root@centralRouter vagrant]# sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-[root@centralRouter vagrant]# sudo iptables -A INPUT -p tcp --dport 22 -j REJECT
-[root@centralRouter vagrant]# service iptables save
-iptables: Saving firewall rules to /etc/sysconfig/iptables:[  OK  ]
+sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; sudo iptables -A INPUT -p tcp --dport 22 -j REJECT; service iptables save iptables
 ```
 
 Затем привести файлы конфигурации к следующему виду:
