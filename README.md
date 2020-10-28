@@ -42,9 +42,8 @@ sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; sud
         stop_command  = /sbin/iptables -D INPUT -s %IP% -p tcp --dport ssh -j ACCEPT
 ```
 
-```/etc/sysconfig/knockd```:
-
 ```
+/etc/sysconfig/knockd
 OPTIONS="-i eth1"
 ```
 
